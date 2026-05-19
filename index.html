@@ -7,20 +7,22 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Приветственный баннер для Upwork -->
-    <div class="upwork-demo">
-        This is a demo project created specifically for Upwork to demonstrate my skills.
-    </div>
-
-    <div class="container">
-        <h1>📋 Мои задачи</h1>
-        
-        <div class="add-task">
-            <input type="text" id="taskInput" placeholder="Что нужно сделать?">
-            <button onclick="addTask()">Добавить</button>
+    <div class="wrapper">
+        <!-- Баннер для Upwork -->
+        <div class="upwork-demo">
+            This is a demo project created specifically for Upwork to demonstrate my skills.
         </div>
 
-        <ul id="taskList"></ul>
+        <div class="container">
+            <h1>📋 Мои задачи</h1>
+            
+            <div class="add-task">
+                <input type="text" id="taskInput" placeholder="Что нужно сделать?">
+                <button onclick="addTask()">Добавить</button>
+            </div>
+
+            <ul id="taskList"></ul>
+        </div>
     </div>
 
     <script src="script.js"></script>
