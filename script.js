@@ -1,8 +1,8 @@
-// Получаем элементы
+// Основные переменные
 const taskInput = document.getElementById('taskInput');
 const taskList = document.getElementById('taskList');
 
-// Загружаем задачи из localStorage при запуске
+// Загрузка задач при открытии страницы
 document.addEventListener('DOMContentLoaded', loadTasks);
 
 // Добавление задачи
@@ -10,66 +10,65 @@ function addTask() {
     const taskText = taskInput.value.trim();
     
     if (taskText === '') {
-        alert('Напиши задачу!');
+        alert('Пожалуйста, введите текст задачи!');
         return;
     }
 
-    const li = document.createElement('li');
-    
-    li.innerHTML = 
-        <span onclick="toggleComplete(this)">${taskText}</span>
-        <button onclick="deleteTask(this)">Удалить</button>
-    ;
-    
-    taskList.appendChild(li);
-    saveTasks();
-    
-    taskInput.value = ''; // очищаем поле
+    const task = {
+        id: Date.now(),
+        text: taskText,
+        completed: false
+    };
+
+    saveTask(task);
+    renderTask(task);
+    taskInput.value = '';
 }
 
-// Отметить задачу как выполненную
-function toggleComplete(element) {
-    const li = element.parentElement;
-    li.classList.toggle('completed');
-    saveTasks();
-}
-
-// Удаление задачи
-function deleteTask(button) {
-    const li = button.parentElement;
-    li.remove();
-    saveTasks();
-}
-
-// Сохранение задач в localStorage
-function saveTasks() {
-    const tasks = [];
-    document.querySelectorAll('li').forEach(li => {
-        tasks.push({
-            text: li.querySelector('span').textContent,
-            completed: li.classList.contains('completed')
-        });
-    });
+// Сохранение задачи в LocalStorage
+function saveTask(task) {
+    let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+    tasks.push(task);
     localStorage.setItem('tasks', JSON.stringify(tasks));
 }
 
-// Загрузка задач из localStorage
+// Загрузка всех задач
 function loadTasks() {
-    const savedTasks = localStorage.getItem('tasks');
-    if (!savedTasks) return;
-    
-    const tasks = JSON.parse(savedTasks);
-    
-    tasks.forEach(task => {
-        const li = document.createElement('li');
-        if (task.completed) li.classList.add('completed');
-        
-        li.innerHTML = 
-            <span onclick="toggleComplete(this)">${task.text}</span>
-            <button onclick="deleteTask(this)">Удалить</button>
-        ;
-        taskList.appendChild(li);
+    taskList.innerHTML = '';
+    const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+    tasks.forEach(task => renderTask(task));
+}
+
+// Отображение одной задачи
+function renderTask(task) {
+    const li = document.createElement('li');
+    li.className = task.completed ? 'completed' : '';
+    li.innerHTML = `
+        <span onclick="toggleComplete(${task.id})">${task.text}</span>
+        <button onclick="deleteTask(${task.id})">Удалить</button>
+    `;
+    taskList.appendChild(li);
+}
+
+// Переключение выполнения задачи
+function toggleComplete(id) {
+    let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+    tasks = tasks.map(task => {
+        if (task.id === id) {
+            task.completed = !task.completed;
+        }
+        return task;
     });
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+    loadTasks(); // перерисовываем список
+}
+
+// Удаление задачи
+function deleteTask(id) {
+    let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+    tasks = tasks.filter(task => task.id !== id);
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+    loadTasks();
 }
 
 // Добавление задачи по нажатию Enter
