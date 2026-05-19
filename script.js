@@ -2,7 +2,7 @@
 const taskInput = document.getElementById('taskInput');
 const taskList = document.getElementById('taskList');
 
-// Загрузка задач при открытии страницы
+// Загрузка задач при открытии
 document.addEventListener('DOMContentLoaded', loadTasks);
 
 // Добавление задачи
@@ -26,14 +26,14 @@ function addTask() {
 
     renderTask(task);
     taskInput.value = '';
-    taskInput.focus(); // Возвращаем фокус в поле
+    taskInput.focus();
 }
 
-// Создание одной задачи (улучшенная версия)
+// Рендер одной задачи
 function renderTask(task) {
     const li = document.createElement('li');
     li.className = task.completed ? 'completed' : '';
-    li.dataset.id = task.id; // Для удобства
+    li.dataset.id = task.id;
 
     li.innerHTML = `
         <input type="checkbox" ${task.completed ? 'checked' : ''}>
@@ -42,12 +42,14 @@ function renderTask(task) {
     `;
 
     // Чекбокс
-    const checkbox = li.querySelector('input[type="checkbox"]');
-    checkbox.addEventListener('change', () => toggleComplete(task.id));
+    li.querySelector('input[type="checkbox"]').addEventListener('change', () => {
+        toggleComplete(task.id);
+    });
 
     // Кнопка удаления
-    const deleteBtn = li.querySelector('.delete-btn');
-    deleteBtn.addEventListener('click', () => deleteTask(task.id));
+    li.querySelector('.delete-btn').addEventListener('click', () => {
+        deleteTask(task.id);
+    });
 
     taskList.appendChild(li);
 }
@@ -63,9 +65,7 @@ function loadTasks() {
 function toggleComplete(id) {
     let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
     tasks = tasks.map(task => {
-        if (task.id === id) {
-            task.completed = !task.completed;
-        }
+        if (task.id === id) task.completed = !task.completed;
         return task;
     });
     localStorage.setItem('tasks', JSON.stringify(tasks));
@@ -82,9 +82,7 @@ function deleteTask(id) {
     loadTasks();
 }
 
-// Добавление задачи по нажатию Enter
+// Enter для добавления
 taskInput.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') {
-        addTask();
-    }
+    if (e.key === 'Enter') addTask();
 });
