@@ -113,3 +113,51 @@ li button {
     border-radius: 10px;
     cursor: pointer;
 }
+.stats {
+    text-align: center;
+    font-size: 15px;
+    color: #64748b;
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+.filters {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 25px;
+    justify-content: center;
+}
+
+.filters button {
+    padding: 8px 16px;
+    border: 2px solid #e2e8f0;
+    background: white;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.3s;
+}
+
+.filters button.active {
+    background: #667eea;
+    color: white;
+    border-color: #667eea;
+}
+
+.clear-btn {
+    width: 100%;
+    margin-top: 20px;
+    padding: 12px;
+    background: #f1f5f9;
+    color: #64748b;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.clear-btn:hover {
+    background: #fee2e2;
+    color: #ef4444;
+}
