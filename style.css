@@ -12,15 +12,11 @@ body {
     align-items: center;
     justify-content: center;
     padding: 20px;
-    color: #2d3748;
 }
 
 .main-wrapper {
     width: 100%;
     max-width: 540px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
 }
 
 .upwork-demo {
@@ -31,7 +27,6 @@ body {
     font-size: 15px;
     font-weight: 500;
     border-radius: 16px 16px 0 0;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
     width: 100%;
 }
 
@@ -52,7 +47,6 @@ h1 {
     color: #1a202c;
 }
 
-/* Поле добавления задачи */
 .add-task {
     display: flex;
     gap: 12px;
@@ -66,7 +60,6 @@ h1 {
     border: 2px solid #e2e8f0;
     border-radius: 14px;
     outline: none;
-    transition: all 0.3s ease;
 }
 
 #taskInput:focus {
@@ -81,22 +74,13 @@ h1 {
     border: none;
     border-radius: 14px;
     cursor: pointer;
-    font-size: 16px;
     font-weight: 600;
-    transition: all 0.3s ease;
 }
 
-.add-task button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
-}
-
-/* Список задач */
 ul {
     list-style: none;
     max-height: 520px;
     overflow-y: auto;
-    padding-right: 8px;
 }
 
 li {
@@ -107,57 +91,25 @@ li {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    transition: all 0.3s ease;
-    border: 1px solid #edf2f7;
-    font-size: 17px;
     gap: 12px;
-}
-
-li:hover {
-    transform: translateX(8px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
 }
 
 li.completed {
     opacity: 0.75;
     text-decoration: line-through;
-    background: #f1f5f9;
-}
-
-li span {
-    flex: 1;
-    cursor: pointer;
-    word-break: break-word;
-}
-
-li button {
-    background: #ef4444;
-    color: white;
-    border: none;
-    padding: 9px 18px;
-    border-radius: 10px;
-    cursor: pointer;
-    font-size: 14px;
-    transition: all 0.3s;
-}
-
-li button:hover {
-    background: #dc2626;
-    transform: scale(1.08);
 }
 
 li input[type="checkbox"] {
     width: 22px;
     height: 22px;
     accent-color: #667eea;
-    cursor: pointer;
 }
 
-/* Скроллбар */
-ul::-webkit-scrollbar {
-    width: 6px;
-}
-ul::-webkit-scrollbar-thumb {
-    background: #cbd5e1;
+li button {
+    background: #ef4444;
+    color: white;
+    border: none;
+    padding: 8px 16px;
     border-radius: 10px;
+    cursor: pointer;
 }
