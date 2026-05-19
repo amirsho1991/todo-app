@@ -120,4 +120,44 @@ li:hover {
 
 li.completed {
     opacity: 0.75;
-    text
+    text-decoration: line-through;
+    background: #f1f5f9;
+}
+
+li span {
+    flex: 1;
+    cursor: pointer;
+    word-break: break-word;
+}
+
+li button {
+    background: #ef4444;
+    color: white;
+    border: none;
+    padding: 9px 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.3s;
+}
+
+li button:hover {
+    background: #dc2626;
+    transform: scale(1.08);
+}
+
+li input[type="checkbox"] {
+    width: 22px;
+    height: 22px;
+    accent-color: #667eea;
+    cursor: pointer;
+}
+
+/* Скроллбар */
+ul::-webkit-scrollbar {
+    width: 6px;
+}
+ul::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 10px;
+}
