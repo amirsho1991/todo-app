@@ -46,7 +46,7 @@ function loadTasks() {
     tasks.forEach(task => renderTask(task));
 }
 
-// Переключение выполнения
+// Переключение выполнения задачи
 function toggleComplete(id) {
     let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
     tasks = tasks.map(task => {
@@ -65,7 +65,7 @@ function deleteTask(id) {
     loadTasks();
 }
 
-// Enter для добавления
+// Добавление по клавише Enter
 taskInput.addEventListener('keypress', (e) => {
     if (e.key === 'Enter') addTask();
 });
