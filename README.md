@@ -1,2 +1,34 @@
-# todo-app
-Simple Todo List application built with HTML, CSS and JavaScript
+# 📋 Todo App
+
+Современное и удобное приложение для управления задачами.
+
+![Todo App Preview](https://amirsho1991.github.io/todo-app/preview.png)
+
+## ✨ Возможности
+
+- ➕ Быстрое добавление новых задач
+- ✅ Отметка задач как выполненных
+- 🗑 Удаление задач
+- 📱 Адаптивный дизайн (работает на телефоне и компьютере)
+- 💾 Сохранение задач в браузере (LocalStorage)
+- Красивый и минималистичный интерфейс
+
+## 🛠 Технологии
+
+- **HTML5**
+- **CSS3** (Flexbox + современный дизайн)
+- **Vanilla JavaScript** (без фреймворков)
+
+## 🚀 Живой демо
+
+[Открыть приложение →](https://amirsho1991.github.io/todo-app)
+
+## 📸 Скриншоты
+
+![Скриншот приложения](https://amirsho1991.github.io/todo-app/preview.png)
+
+## Как запустить локально
+
+1. Склонируй репозиторий:
+   ```bash
+   git clone https://github.com/amirsho1991/todo-app.git
