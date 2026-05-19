@@ -20,23 +20,12 @@ function addTask() {
         completed: false
     };
 
-    saveTask(task);
-    renderTask(task);
-    taskInput.value = '';
-}
-
-// Сохранение задачи в LocalStorage
-function saveTask(task) {
     let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
     tasks.push(task);
     localStorage.setItem('tasks', JSON.stringify(tasks));
-}
 
-// Загрузка всех задач
-function loadTasks() {
-    taskList.innerHTML = '';
-    const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
-    tasks.forEach(task => renderTask(task));
+    renderTask(task);
+    taskInput.value = '';
 }
 
 // Отображение одной задачи
@@ -50,17 +39,22 @@ function renderTask(task) {
     taskList.appendChild(li);
 }
 
-// Переключение выполнения задачи
+// Загрузка всех задач
+function loadTasks() {
+    taskList.innerHTML = '';
+    const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+    tasks.forEach(task => renderTask(task));
+}
+
+// Переключение выполнения
 function toggleComplete(id) {
     let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
     tasks = tasks.map(task => {
-        if (task.id === id) {
-            task.completed = !task.completed;
-        }
+        if (task.id === id) task.completed = !task.completed;
         return task;
     });
     localStorage.setItem('tasks', JSON.stringify(tasks));
-    loadTasks(); // перерисовываем список
+    loadTasks();
 }
 
 // Удаление задачи
@@ -71,9 +65,7 @@ function deleteTask(id) {
     loadTasks();
 }
 
-// Добавление задачи по нажатию Enter
-taskInput.addEventListener('keypress', function(e) {
-    if (e.key === 'Enter') {
-        addTask();
-    }
+// Enter для добавления
+taskInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') addTask();
 });
