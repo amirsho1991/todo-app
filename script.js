@@ -2,15 +2,14 @@
 const taskInput = document.getElementById('taskInput');
 const taskList = document.getElementById('taskList');
 
-// Загрузка задач при открытии
+// Загрузка задач при запуске
 document.addEventListener('DOMContentLoaded', loadTasks);
 
-// Добавление задачи
 function addTask() {
     const taskText = taskInput.value.trim();
     
     if (taskText === '') {
-        alert('Пожалуйста, введите текст задачи!');
+        alert('Введите текст задачи!');
         return;
     }
 
@@ -29,16 +28,14 @@ function addTask() {
     taskInput.focus();
 }
 
-// Рендер одной задачи
 function renderTask(task) {
     const li = document.createElement('li');
     li.className = task.completed ? 'completed' : '';
-    li.dataset.id = task.id;
-
+    
     li.innerHTML = `
         <input type="checkbox" ${task.completed ? 'checked' : ''}>
         <span>${task.text}</span>
-        <button class="delete-btn">Удалить</button>
+        <button>Удалить</button>
     `;
 
     // Чекбокс
@@ -47,21 +44,19 @@ function renderTask(task) {
     });
 
     // Кнопка удаления
-    li.querySelector('.delete-btn').addEventListener('click', () => {
+    li.querySelector('button').addEventListener('click', () => {
         deleteTask(task.id);
     });
 
     taskList.appendChild(li);
 }
 
-// Загрузка всех задач
 function loadTasks() {
     taskList.innerHTML = '';
     const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
     tasks.forEach(task => renderTask(task));
 }
 
-// Переключение выполнения
 function toggleComplete(id) {
     let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
     tasks = tasks.map(task => {
@@ -72,7 +67,6 @@ function toggleComplete(id) {
     loadTasks();
 }
 
-// Удаление задачи
 function deleteTask(id) {
     if (!confirm('Удалить эту задачу?')) return;
     
@@ -82,7 +76,7 @@ function deleteTask(id) {
     loadTasks();
 }
 
-// Enter для добавления
+// Добавление по Enter
 taskInput.addEventListener('keypress', (e) => {
     if (e.key === 'Enter') addTask();
 });
